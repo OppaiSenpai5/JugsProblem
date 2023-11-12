@@ -4,6 +4,11 @@
 #include <sstream>
 #include "JugsProblem.h"
 
+const char* USER_INPUT_PROMPT = "Please enter the volumes x, y and z"
+	" for each of the 3 jugs and a volume v you want"
+	" to achieve in liters.\n(x, y, z and v must all"
+	" be whole positive number that are different"
+	" from one another)\n";
 const char* INVALID_INPUT_MESSAGE = "The input supplied is invalid!";
 
 JugsProblem::liters read_input()
@@ -27,6 +32,7 @@ JugsProblem::liters read_input()
 
 int main()
 {
+	std::cout << USER_INPUT_PROMPT << std::endl;
 
 	try
 	{
