@@ -5,10 +5,8 @@
 #include <algorithm>
 
 JugsProblem::JugsProblem(liters x, liters y, liters z, liters v)
-	: max_capacity{ x, y, z },
-	val(v),
-	states(),
-	unique_states()
+	: max_capacity{ x, y, z }, val(v),
+	states(), unique_states()
 {
 	unique_states.insert({ EMPTY_STATE, EMPTY_STATE });
 	states.push(EMPTY_STATE);
@@ -27,7 +25,7 @@ JugsProblem::state JugsProblem::search_for_val()
 		auto old_state = states.front();
 		states.pop();
 
-		for (size_t i = 0; i < old_state.size(); i++)
+		for (size_t i = 0; i < old_state.size(); ++i)
 		{
 			auto new_state = drain(old_state, i);
 			add_new_entry(new_state, old_state);
@@ -43,7 +41,7 @@ JugsProblem::state JugsProblem::search_for_val()
 				return new_state;
 			}
 
-			for (size_t j = 0; j < old_state.size(); j++)
+			for (size_t j = 0; j < old_state.size(); ++j)
 			{
 				new_state = pour(old_state, i, j);
 				add_new_entry(new_state, old_state);

@@ -4,7 +4,7 @@
 #include <sstream>
 #include "JugsProblem.h"
 
-const char* INVALID_INPUT_MESSAGE = "The input supplied is invalid";
+const char* INVALID_INPUT_MESSAGE = "The input supplied is invalid!";
 
 JugsProblem::liters read_input()
 {
@@ -38,13 +38,15 @@ int main()
 		JugsProblem::liters z = read_input();
 		std::cout << "v=";
 		JugsProblem::liters v = read_input();
+		std::cout << std::endl;
 
 		JugsProblem jugs_problem(x, y, z, v);
 		jugs_problem.solve();
 	}
 	catch (const char* exception)
 	{
-		std::cout << exception << std::endl;
+		std::cout << std::endl;
+		std::cerr << exception << std::endl;
 		return EXIT_FAILURE;
 	}
 
