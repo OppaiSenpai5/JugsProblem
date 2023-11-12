@@ -95,14 +95,17 @@ JugsProblem::state JugsProblem::pour(state st, size_t i, size_t j)
 void JugsProblem::print_state(const state& st)
 {
 	std::cout << '(';
-	for (auto it = st.cbegin(); it != st.cend(); it++)
+
+	state::const_iterator begin = st.cbegin(), end = st.cend();
+	for (auto it = begin; it != end; ++it)
 	{
-		if (it != st.cbegin())
+		if (it != begin)
 		{
 			std::cout << ", ";
 		}
 		std::cout << *it;
 	}
+
 	std::cout << ')';
 }
 
@@ -117,11 +120,17 @@ void JugsProblem::print_steps_to(const state& answer)
 			steps.push_back(unique_states[steps.back()]);
 		}
 
-		std::cout << "v=" << val << " can be achieved in "
-			<< steps.size() - 1 << " steps" << std::endl;
-		for (auto it = steps.crbegin(); it != steps.crend(); it++)
+		std::cout << "A volume of " << val
+			<< " liters can be achieved in "
+			<< steps.size() - 1 << " steps."
+			<< std::endl;
+
+		decltype(steps)::const_reverse_iterator
+			begin = steps.crbegin(),
+			end = steps.crend();
+		for (auto it = begin; it != end; ++it)
 		{
-			if (it != steps.crbegin())
+			if (it != begin)
 			{
 				std::cout << " -> ";
 			}
@@ -131,6 +140,8 @@ void JugsProblem::print_steps_to(const state& answer)
 	}
 	else
 	{
-		std::cout << "v=" << val << " is unachieveable!" << std::endl;
+		std::cout << "A volume of " << val
+			<< " liters is unachieveable!"
+			<< std::endl;
 	}
 }
